@@ -10,6 +10,6 @@ module.exports = new Command(
 	},
 	async (handler, message, args) => {
 		if (args.length > 0) message.channel.send(message.content);
-		else return argError(message, 'You must specify text to say.', this);
+		else argError(message, 'You must specify text to say.', this);
 	}
 );
