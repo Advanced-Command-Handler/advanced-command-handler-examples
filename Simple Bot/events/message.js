@@ -129,7 +129,7 @@ module.exports = async (handler, message) => {
 				}, cmd.cooldown * 1000);
 			}
 
-			cmd.run(handler.client, message, args).catch(warning => {
+			cmd.run(handler, message, args).catch(warning => {
 				Logger.warn(`A small error was made somewhere with the command ${Logger.setColor('gold', cmd.name)}.
 Date : ${Logger.setColor('yellow', DateTime.local().toFormat('TT'))}${Logger.setColor('red', '\nError : ' + warning.stack)}`);
 
@@ -137,6 +137,7 @@ Date : ${Logger.setColor('yellow', DateTime.local().toFormat('TT'))}${Logger.set
 					const embedLog = new BetterEmbed();
 					embedLog.color = '#dd0000';
 					embedLog.description = 'An error occurred with the command : **' + cmd.name + '**.';
+					embedLog.fields = [];
 					embedLog.fields.push({
 						name: 'Informations :',
 						value: `\nSent by : ${message.author} (\`${message.author.id}\`)\n\nOnto : **${message.guild.name}** (\`${message.guild.id}\`)\n\nInto : ${message.channel} (\`${message.channel.id})\``,

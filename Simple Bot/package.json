@@ -7,6 +7,6 @@
 		"start": "node main.js"
 	},
 	"dependencies": {
-		"advanced-command-handler": "^1.2.0"
+		"advanced-command-handler": "^1.2.1"
 	}
 }
