@@ -7,7 +7,7 @@ module.exports = new Command(
 		usage: 'help <command>',
 		aliases: ['h'],
 	},
-	async (client, message, args) => {
+	async (handler, message, args) => {
 		const embed = new BetterEmbed();
 		let command;
 
@@ -53,7 +53,7 @@ ${command.ownerOnly ? `**Only available to the owner(s).**` : ''}`;
 			}
 		} else {
 			embed.title = 'Here is the list of commands:';
-			embed.description = `Type ${client.handler.prefixes[0]}help <command> To get info on a command\n\n${client.handler.commands
+			embed.description = `Type ${handler.prefixes[0]}help <command> To get info on a command\n\n${handler.commands
 				.map(c => `**${c.name}** : ${c.description}`)
 				.sort()
 				.join('\n\n')}`;

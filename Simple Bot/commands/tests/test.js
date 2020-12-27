@@ -10,7 +10,7 @@ module.exports = new Command(
 		clientPermissions: ['MANAGE_GUILD'],
 		cooldown: 5,
 	},
-	async (client, message) => {
+	async (handler, message) => {
 		message.channel.send('Hello, Discord!');
 	}
 );
