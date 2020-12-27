@@ -1,0 +1,20 @@
+{
+	"dependencies": {
+		"@types/node": "^14.14.14",
+		"advanced-command-handler": "^2.0.0",
+		"discord.js": "^12.5.1"
+	},
+	"description": "A bot for testing the TypeScript version of the command handler.",
+	"devDependencies": {
+		"typescript": "^4.1.3"
+	},
+	"main": "dist/index.js",
+	"name": "ts-bot",
+	"scripts": {
+		"build": "tsc",
+		"build:run": "npm run build && npm run run",
+		"run": "node .",
+		"start": "npm run build && npm run run"
+	},
+	"version": "1.0.0"
+}
