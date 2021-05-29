@@ -5,9 +5,10 @@ process.chdir('dist');
 CommandHandler.create({
 	prefixes: ['!'],
 	commandsDir: 'commands',
-	eventsDir: 'events'
-});
-
-CommandHandler.launch({
-	token: 'token :)'
-});
+	eventsDir: 'events',
+})
+	.setDefaultEvents()
+	.setDefaultCommands()
+	.launch({
+		token: 'token :)',
+	});
