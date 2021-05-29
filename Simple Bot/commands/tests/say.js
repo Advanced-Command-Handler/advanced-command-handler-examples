@@ -10,7 +10,7 @@ module.exports = new Command(
 	},
 	async (handler, message, args) => {
 		args.length > 0
-			? await message.channel.send(message.content)
+			? await message.channel.send(args.join(' '))
 			: await argError(message, 'You must specify text to say.', this);
 	}
 );
