@@ -13,52 +13,45 @@ module.exports = new Command(
 
 		if (args[0]) {
 			if ((command = await getThing('command', args[0]))) {
-				embed.title = `Help on command : ${command.name}`;
-				embed.description = `<> = Required, [] = Optional
+				embed.setTitle(`Help on command: ${command.name}`);
+				embed.setDescription(`<> = Required, [] = Optional
 Category : **${command.category}**
 Available in private messages : **${command.guildOnly ? 'no' : 'yes'}**
-${command.ownerOnly ? `**Only available to the owner(s).**` : ''}`;
-				embed.fields.push({
-					name: 'Description :',
-					value: command.description,
-				});
+${command.ownerOnly ? `**Only available to the owner(s).**` : ''}`);
+				embed.addField('Description : ', command.description);
 
-				if (command.usage) {
-					embed.fields.push({
-						name: 'Syntax :',
-						value: command.usage,
-					});
-				}
+				if (command.usage) embed.addField('Syntax :', command.usage);
 
 				if (command.userPermissions) {
-					embed.fields.push({
-						name: 'User permissions required :',
-						value: command.userPermissions.join(' '),
-					});
+					embed.addField(
+						'User Permissions required :',
+						command.userPermissions.join(' ')
+					);
 				}
 
 				if (command.clientPermissions) {
-					embed.fields.push({
-						name: 'Bot permissions required :',
-						value: command.clientPermissions.join(' '),
-					});
+					embed.addField(
+						'Bot permissions required :',
+						command.clientPermissions.join(' ')
+					);
 				}
 
 				if (command.aliases) {
-					embed.fields.push({
-						name: 'Aliases :',
-						value: command.aliases.join(' '),
-					});
+					embed.addField('Aliases :', command.aliases.join(' '));
 				}
 			}
 		} else {
-			embed.title = 'Here is the list of commands:';
-			embed.description = `Type ${handler.prefixes[0]}help <command> To get info on a command\n\n${handler.commands
-				.map(c => `**${c.name}** : ${c.description}`)
-				.sort()
-				.join('\n\n')}`;
+			embed.setTitle('handler is the list of commands :');
+			embed.setDescription(
+				`Type ${
+					handler.prefixes[0]
+				}help <command> To get info on a command\n\n${handler.commands
+					.map(c => `**${c.name}** : ${c.description}`)
+					.sort()
+					.join('\n\n')}`
+			);
 		}
 
-		return message.channel.send({embed: embed.build()});
+		await message.channel.send(embed);
 	}
 );

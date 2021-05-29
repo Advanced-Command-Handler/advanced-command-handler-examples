@@ -9,7 +9,8 @@ module.exports = new Command(
 		userPermissions: ['MANAGE_MESSAGES'],
 	},
 	async (handler, message, args) => {
-		if (args.length > 0) message.channel.send(message.content);
-		else argError(message, 'You must specify text to say.', this);
+		args.length > 0
+			? await message.channel.send(message.content)
+			: await argError(message, 'You must specify text to say.', this);
 	}
 );
