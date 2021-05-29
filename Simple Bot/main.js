@@ -4,8 +4,9 @@ CommandHandler.create({
 	commandsDir: 'commands',
 	eventsDir: 'events',
 	prefixes: [';', 'bot!'],
-});
-
-CommandHandler.launch({
-	token: 'token',
-});
+})
+	.setDefaultCommands()
+	.setDefaultEvents()
+	.launch({
+		token: 'token',
+	});
