@@ -8,9 +8,9 @@ export default new Command(
 		aliases: ['t'],
 		clientPermissions: ['MANAGE_GUILD'],
 		tags: [Tag.guildOnly],
-		cooldown: 5
+		cooldown: 5,
 	},
-	async (handler: CommandHandler, message: Message) => {
+	async (handler: typeof CommandHandler, message: Message) => {
 		await message.channel.send('Hello, Discord!');
 	}
 );
