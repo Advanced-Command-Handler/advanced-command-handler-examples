@@ -14,10 +14,18 @@ module.exports = new Command(
 		if (args[0]) {
 			if ((command = await getThing('command', args[0]))) {
 				embed.setTitle(`Help on command: ${command.name}`);
-				embed.setDescription(`<> = Required, [] = Optional
+				embed.setDescription(`_<> = Required, [] = Optional_
 Category : **${command.category}**
-Available in private messages : **${command.guildOnly ? 'no' : 'yes'}**
-${command.ownerOnly ? `**Only available to the owner(s).**` : ''}`);
+Available in private messages : **${
+					command.tags.includes('guildOnly') ? 'no' : 'yes'
+				}**
+${
+	command.tags.includes('ownerOnly')
+		? `**Only available to the owner(s).**`
+		: ''
+}`);
+				// Feel free to handle more tags.
+
 				embed.addField('Description : ', command.description);
 
 				if (command.usage) embed.addField('Syntax :', command.usage);
@@ -25,19 +33,22 @@ ${command.ownerOnly ? `**Only available to the owner(s).**` : ''}`);
 				if (command.userPermissions) {
 					embed.addField(
 						'User Permissions required :',
-						command.userPermissions.join(' ')
+						`${command.userPermissions.sort().join(' ')}`
 					);
 				}
 
 				if (command.clientPermissions) {
 					embed.addField(
 						'Bot permissions required :',
-						command.clientPermissions.join(' ')
+						`${command.clientPermissions.sort().join(' ')}`
 					);
 				}
 
 				if (command.aliases) {
-					embed.addField('Aliases :', command.aliases.join(' '));
+					embed.addField(
+						'Aliases :',
+						command.aliases.sort().join(' ')
+					);
 				}
 			}
 		} else {
@@ -45,7 +56,7 @@ ${command.ownerOnly ? `**Only available to the owner(s).**` : ''}`);
 			embed.setDescription(
 				`Type ${
 					handler.prefixes[0]
-				}help <command> To get info on a command\n\n${handler.commands
+				}\`help <command>\` To get info on a command\n\n${handler.commands
 					.map(c => `**${c.name}** : ${c.description}`)
 					.sort()
 					.join('\n\n')}`
