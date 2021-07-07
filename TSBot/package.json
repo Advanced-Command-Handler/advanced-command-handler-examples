@@ -1,12 +1,12 @@
 {
 	"dependencies": {
-		"@types/node": "^14.17.1",
-		"advanced-command-handler": "^2.4.0",
+		"@types/node": "^16.0.1",
+		"advanced-command-handler": "^3.0.0-beta.0",
 		"discord.js": "^12.5.3"
 	},
 	"description": "A bot for testing the TypeScript version of the command handler.",
 	"devDependencies": {
-		"typescript": "^4.3.2"
+		"typescript": "^4.3.5"
 	},
 	"main": "dist/index.js",
 	"name": "ts-bot",
