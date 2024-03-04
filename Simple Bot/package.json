@@ -1,6 +1,7 @@
 {
 	"dependencies": {
-		"advanced-command-handler": "^2.4.0"
+		"advanced-command-handler": "file:../../source",
+		"discord.js": "13.17.1"
 	},
 	"description": "A simple bot.",
 	"main": "main.js",
@@ -8,5 +9,6 @@
 	"scripts": {
 		"start": "node ."
 	},
+	"type": "module",
 	"version": "1.1.0"
 }

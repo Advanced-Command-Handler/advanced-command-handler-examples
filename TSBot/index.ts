@@ -1,4 +1,5 @@
 import {CommandHandler} from 'advanced-command-handler';
+import {Intents} from 'discord.js';
 
 process.chdir('dist');
 
@@ -7,8 +8,11 @@ CommandHandler.create({
 	commandsDir: 'commands',
 	eventsDir: 'events',
 })
-	.setDefaultEvents()
-	.setDefaultCommands()
+	.useDefaultEvents()
+	.useDefaultCommands()
 	.launch({
+		clientOptions: {
+			intents: [Intents.FLAGS.MESSAGE_CONTENT, Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+		},
 		token: 'token :)',
 	});

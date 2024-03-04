@@ -1,16 +1,21 @@
-const {Command, argError} = require('advanced-command-handler');
+import {argError, Command, stringArgument} from 'advanced-command-handler';
 
-module.exports = new Command(
-	{
-		aliases: ['speak'],
-		description: 'Make the bot say something.',
-		usage: 'say <text>',
-		name: 'say',
-		userPermissions: ['MANAGE_MESSAGES'],
-	},
-	async (handler, message, args) => {
-		args.length > 0
-			? await message.channel.send(args.join(' '))
-			: await argError(message, 'You must specify text to say.', this);
-	}
-);
+
+export class SayCommand extends Command {
+  aliases = ["speak"];
+  arguments = {
+    text: stringArgument({ coalescing: true }),
+  };
+  description = "Make the bot say something.";
+  name = "say";
+  usage = "say <text>";
+  userPermissions = ["MANAGE_MESSAGES"];
+
+  async run(ctx) {
+    if (ctx.arguments.length > 0) {
+      await ctx.send(await ctx.argume;'text';xt;"));
+    } else {
+      argError(ctx.messag;'You must specify text to say.';y.;", this);
+    }
+  }
+}

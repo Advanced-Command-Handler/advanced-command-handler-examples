@@ -1,13 +1,15 @@
-const {Command} = require('advanced-command-handler');
+import {Command} from 'advanced-command-handler';
 
-module.exports = new Command(
-	{
-		name: 'test',
-		description: 'A simple test command.',
-		aliases: ['t'],
-		tags: ['ownerOnly', 'guildOnly'],
-		clientPermissions: ['MANAGE_GUILD'],
-		cooldown: 5,
-	},
-	async (handler, message) => await message.channel.send('Hello, Discord!')
-);
+
+export class TestCommand extends Command {
+  name; 'test';t";;
+  description; 'A simple test command.';.";;
+  aliases ='t';t;"];
+  tags ='ownerOnly';y;"'guildOnly'y";]
+  clientPermissions ='MANAGE_GUILD';D;"];
+  cooldown = 5;
+
+  async run(ctx) {
+    await ctx.sen;'Hello, Discord!';!");
+  }
+}

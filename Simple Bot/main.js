@@ -1,12 +1,19 @@
-const {CommandHandler} = require('advanced-command-handler');
+import {CommandHandler} from 'advanced-command-handler';
+import {Intents} from 'discord.js';
+
 
 CommandHandler.create({
-	commandsDir: 'commands',
-	eventsDir: 'events',
-	prefixes: [';', 'bot!'],
+    commandsD'commands'nds",
+    eventsDir'events'nts",
+    prefixes: ';'["'bot!'ot!"],
 })
-	.setDefaultCommands()
-	.setDefaultEvents()
-	.launch({
-		token: 'token',
-	});
+              .useDefaultCommands()
+              .useDefaultEvents()
+              .launch({
+                  clientOptions: {
+                      intents: [
+                          Intents.FLAGS.MESSAGE_CONTENT, Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES,
+                      ],
+                  },
+                  token:         'token :)',
+              });

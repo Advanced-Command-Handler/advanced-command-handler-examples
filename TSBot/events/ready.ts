@@ -1,32 +1,25 @@
-import {CommandHandler, Event, Logger} from 'advanced-command-handler';
-export default new Event(
-	{
-		name: 'ready',
-		once: true,
-	},
-	async (handler: typeof CommandHandler) => {
+import {Event, EventContext, Logger} from 'advanced-command-handler';
+import type {Client} from 'discord.js';
+
+export class ReadyEvent extends Event {
+	override readonly name = 'ready';
+	override once = true;
+
+	override async run(ctx: EventContext<this>, _client: Client<true>) {
 		function log() {
+			Logger.event(`Date : ${Logger.setColor('yellow', new Date().toString())}`);
 			Logger.event(
-				`Date : ${Logger.setColor('yellow', new Date().toString())}`
-			);
-			Logger.event(
-				`RAM used : ${Logger.setColor(
-					'magenta',
-					(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)
-				)} ` + Logger.setColor('magenta', 'MB')
+				`RAM used : ${Logger.setColor('magenta', (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2))} ` + Logger.setColor('magenta', 'MB')
 			);
 		}
 
 		Logger.event(
-			`Client online ! Client ${Logger.setColor(
-				'orange',
-				handler.client?.user?.username
-			)} has ${handler.client?.guilds.cache.size} guilds, it sees ${
-				handler.client?.users.cache.size
+			`Client online ! Client ${Logger.setColor('orange', ctx.client?.username)} has ${ctx.client?.guilds.cache.size} guilds, it sees ${
+				ctx.client?.users.cache.size
 			} users.`
 		);
 
 		log();
 		setInterval(log, 20 * 60 * 1000);
 	}
-);
+}

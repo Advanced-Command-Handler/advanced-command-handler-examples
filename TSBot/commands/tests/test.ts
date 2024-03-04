@@ -1,16 +1,14 @@
-import {Command, CommandHandler, Tag} from 'advanced-command-handler';
-import {Message} from 'discord.js';
+import {Command, CommandContext, Tag} from 'advanced-command-handler';
 
-export default new Command(
-	{
-		name: 'test',
-		description: 'A simple test command',
-		aliases: ['t'],
-		clientPermissions: ['MANAGE_GUILD'],
-		tags: [Tag.guildOnly],
-		cooldown: 5,
-	},
-	async (handler: typeof CommandHandler, message: Message) => {
-		await message.channel.send('Hello, Discord!');
+export class TestCommand extends Command {
+	override aliases = ['t'];
+	override clientPermissions = ['MANAGE_GUILD'];
+	override cooldown = 5;
+	override description = 'A simple MapToValuesType command';
+	override readonly name = 'test';
+	override tags = [Tag.guildOnly];
+
+	async run(ctx: CommandContext) {
+		await ctx.send('Hello, Discord!');
 	}
-);
+}
